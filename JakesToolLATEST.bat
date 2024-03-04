@@ -2,7 +2,7 @@
 
 
 //CHANGE THIS EVERY UPDATE!
-set datemodified=3-04-24 3:34 PM CDT
+set datemodified=3-04-24 3:38 PM CDT
 //
 set RobloxPath=Not manually set.
 
@@ -11,12 +11,12 @@ set RobloxPath=Not manually set.
 title Jake's Tool
 setlocal EnableDelayedExpansion
 cls
-cd C:\JakesTool
+cd %temp%/JakesTool
 color 0a
 set filehost=https://filehost.losernerd.com
 echo filehost: %filehost%
 echo updated %datemodified%
-echo latest update: added automatic roblox path finder (fixed menu options aswell)
+echo latest update: changed tool directory from C:/ to temp
 echo press any key to continue
 pause > nul
 :menu
