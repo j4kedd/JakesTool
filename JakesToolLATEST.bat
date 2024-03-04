@@ -2,7 +2,7 @@
 
 
 //CHANGE THIS EVERY UPDATE!
-set datemodified=3-04-24 3:49 PM CDT
+set datemodified=3-04-24 3:54 PM CDT
 //
 set RobloxPath=Not manually set.
 
@@ -567,7 +567,7 @@ echo Roblox not found. Please make sure you have installed and have ran Roblox b
 goto robloxpause
 )
 echo Deleting..
-rmdir /s "!robloxVersion!"
+rmdir /s /q "!robloxVersion!"
 echo Deleted !robloxVersion!
 )
 
