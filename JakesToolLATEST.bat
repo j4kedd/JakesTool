@@ -2,7 +2,7 @@
 
 
 //CHANGE THIS EVERY UPDATE!
-set datemodified=3-04-24 3:27 PM CDT
+set datemodified=3-04-24 3:32 PM CDT
 //
 set RobloxPath=Not manually set.
 
@@ -80,12 +80,12 @@ echo Welcome to Jake's Roblox Utilities
 echo Roblox Filepath: %RobloxPath%
 echo 1. Set Roblox File Location Manually
 echo 2. Set Roblox File Location Automatically
-echo 2. Old Oof Sound
-echo 3. Old Cursor
-echo 4. Install Roblox FPS Unlocker
-echo 5. Download/Update Roblox
-echo 6. Delete Roblox
-echo 7. Main Menu
+echo 3. Old Oof Sound
+echo 4. Old Cursor
+echo 5. Install Roblox FPS Unlocker
+echo 6. Download/Update Roblox
+echo 7. Delete Roblox
+echo 8. Main Menu
 set /p choice=Enter choice (e.g, "1"): 
 
 if "%choice%"=="1" goto manualrobloxpath
@@ -129,7 +129,7 @@ set robloxVersion=!robloxExecutable:\RobloxPlayerBeta.exe=!
 echo RobloxVersion: !robloxVersion!
 echo RobloxFile: !robloxExecutable!
 )
-
+cls
 if not defined robloxExecutable (
 for /f "tokens=* delims=" %%a in ('where /r "C:\Program Files (x86)\Roblox" "RobloxPlayerBeta.exe"') do (
 set robloxExecutable=%%a
@@ -138,7 +138,7 @@ echo RobloxVersion: !robloxVersion!
 echo RobloxFile: !robloxExecutable!
 )
 )
-
+cls
 if not defined robloxExecutable (
 for /f "tokens=* delims=" %%a in ('where /r "%ProgramFiles%\Roblox" "RobloxPlayerBeta.exe"') do (
 set robloxExecutable=%%a
@@ -147,7 +147,7 @@ echo RobloxVersion: !robloxVersion!
 echo RobloxFile: !robloxExecutable!
 )
 )
-
+cls
 if not defined robloxExecutable (
 echo Roblox not found. Please make sure you have installed and have ran Roblox before attempting to find it.
 goto robloxpause
@@ -161,6 +161,7 @@ set /p choice=Would you like to set this as your Roblox path? (y/n):
 if "%choice%"=="y" (
 set robloxpathset=yes
 set RobloxPath=!robloxVersion!
+cls
 echo Roblox path has been set to "!robloxVersion!".
 echo Press any key to go back to the main menu.
 pause > nul
