@@ -2,7 +2,7 @@
 
 
 //CHANGE THIS EVERY UPDATE!
-set datemodified=3-04-24 3:43 PM CDT
+set datemodified=3-04-24 3:49 PM CDT
 //
 set RobloxPath=Not manually set.
 
@@ -563,15 +563,16 @@ echo RobloxFile: !robloxExecutable!
 )
 cls
 if not defined robloxExecutable (
-echo Roblox not found. Please make sure you have installed and have ran Roblox before attempting to find it.
+echo Roblox not found. Please make sure you have installed and have ran Roblox before attempting to delete it.
 goto robloxpause
 )
 echo Deleting..
-for /f "delims=" %%i in ('dir /b /s "C:\Users\%username%\AppData\Local\Roblox"') do (
-    echo Deleting "%%i"
-    del /q "%%i"
+rmdir /s "!robloxVersion!"
+echo Deleted !robloxVersion!
 )
-rmdir /s /q "!robloxVersion!"
+
+
+
 echo Roblox has been deleted. Press any key to go back to the Roblox menu.
 
 pause > nul
