@@ -2,7 +2,7 @@
 
 
 //CHANGE THIS EVERY UPDATE!
-set datemodified=3-04-24 3:06 PM CDT
+set datemodified=3-04-24 3:21 PM CDT
 //
 set RobloxPath=Not manually set.
 
@@ -16,7 +16,7 @@ color 0a
 set filehost=https://filehost.losernerd.com
 echo filehost: %filehost%
 echo updated %datemodified%
-echo latest update: roblox path setter fixed (no longer broken when blank)
+echo latest update: added automatic roblox path finder
 echo press any key to continue
 pause > nul
 :menu
@@ -88,12 +88,13 @@ echo 7. Main Menu
 set /p choice=Enter choice (e.g, "1"): 
 
 if "%choice%"=="1" goto manualrobloxpath
-if "%choice%"=="2" goto oofsound
-if "%choice%"=="3" goto cursor
-if "%choice%"=="4" goto rbxfpsunlocker
-if "%choice%"=="5" goto dlroblox
-if "%choice%"=="6" goto delroblox
-if "%choice%"=="7" goto menu
+if "%choice%"=="2" goto autorobloxpath
+if "%choice%"=="3" goto oofsound
+if "%choice%"=="4" goto cursor
+if "%choice%"=="5" goto rbxfpsunlocker
+if "%choice%"=="6" goto dlroblox
+if "%choice%"=="7" goto delroblox
+if "%choice%"=="8" goto menu
 
 cls
 echo Please choose a valid option.
@@ -101,7 +102,7 @@ timeout 3 > nul
 goto robloxmenu
 
 
-//////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////// Manual Roblox Path Set
 
 :manualrobloxpath
 cls
@@ -113,6 +114,69 @@ if "%RobloxPath%"=="Not manually set." set robloxpathset=no
 goto robloxmenu
 
 
+
+////////////////////////////////////////////////////////////////// Automatic Roblox Path Set
+
+:manualrobloxpath
+cls
+echo Example of the correct filepath: C:\Users\Quandale\AppData\Local\Roblox\Versions\version-a1b2c3f4g5h6f7g8
+echo Finding Roblox version...
+
+for /f "tokens=* delims=" %%a in ('where /r C:\Users\%username%\AppData\Local\Roblox\Versions "RobloxPlayerBeta.exe"') do (
+set robloxExecutable=%%a
+set robloxVersion=!robloxExecutable:\RobloxPlayerBeta.exe=!
+echo RobloxVersion: !robloxVersion!
+echo RobloxFile: !robloxExecutable!
+)
+
+if not defined robloxExecutable (
+for /f "tokens=* delims=" %%a in ('where /r "C:\Program Files (x86)\Roblox" "RobloxPlayerBeta.exe"') do (
+set robloxExecutable=%%a
+set robloxVersion=!robloxExecutable:\RobloxPlayerBeta.exe=!
+echo RobloxVersion: !robloxVersion!
+echo RobloxFile: !robloxExecutable!
+)
+)
+
+if not defined robloxExecutable (
+for /f "tokens=* delims=" %%a in ('where /r "%ProgramFiles%\Roblox" "RobloxPlayerBeta.exe"') do (
+set robloxExecutable=%%a
+set robloxVersion=!robloxExecutable:\RobloxPlayerBeta.exe=!
+echo RobloxVersion: !robloxVersion!
+echo RobloxFile: !robloxExecutable!
+)
+)
+
+if not defined robloxExecutable (
+echo Roblox not found. Please make sure you have installed and have ran Roblox before attempting to find it.
+goto robloxpause
+)
+
+echo.
+cls
+::autoverchoice
+echo Version Found: !robloxVersion!
+set /p choice=Would you like to set this as your Roblox path? (y/n): 
+if "%choice%"=="y" (
+set robloxpathset=yes
+set RobloxPath=!robloxVersion!
+echo Roblox path has been set to "!robloxVersion!".
+echo Press any key to go back to the main menu.
+pause > nul
+goto robloxmenu
+)
+
+if "%choice%"=="n" (
+echo Roblox Version: !robloxVersion!
+echo Press any key to go back to the main menu.
+pause > nul
+goto robloxmenu
+)
+
+cls
+Please pick a valid option.
+timeout 2 > nul
+goto autoverchoice
 
 ////////////////////////////////////////////////////////////////// Oof Patch
 
