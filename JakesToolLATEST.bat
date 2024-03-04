@@ -2,7 +2,7 @@
 
 
 //CHANGE THIS EVERY UPDATE!
-set datemodified=3-04-24 3:22 PM CDT
+set datemodified=3-04-24 3:24 PM CDT
 //
 set RobloxPath=Not manually set.
 
@@ -23,7 +23,7 @@ pause > nul
 cls
 color 1a
 echo Welcome to Jake's Tool
-echo 1. Free Spotify Premium
+echo 1. Free Spotify Premium (SpotX)
 echo 2. Roblox Menu
 echo 3. Exit
 
