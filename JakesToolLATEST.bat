@@ -16,7 +16,7 @@ color 0a
 set filehost=https://filehost.losernerd.com
 echo filehost: %filehost%
 echo updated %datemodified%
-echo latest update: added automatic roblox path finder
+echo latest update: added automatic roblox path finder (fixed menu options aswell)
 echo press any key to continue
 pause > nul
 :menu
