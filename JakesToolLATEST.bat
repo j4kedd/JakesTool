@@ -2,7 +2,7 @@
 
 
 //CHANGE THIS EVERY UPDATE!
-set datemodified=3-04-24 3:38 PM CDT
+set datemodified=3-04-24 3:43 PM CDT
 //
 set RobloxPath=Not manually set.
 
@@ -16,7 +16,7 @@ color 0a
 set filehost=https://filehost.losernerd.com
 echo filehost: %filehost%
 echo updated %datemodified%
-echo latest update: changed tool directory from C:/ to temp
+echo latest update: fixed deleter
 echo press any key to continue
 pause > nul
 :menu
@@ -535,14 +535,43 @@ if "%delchoice%"=="yes" goto deleteyes
 
 :deleteyes
 cls
-echo Finding Roblox
-echo Roblox Folder: C:\Users\%username%\AppData\Local\Roblox
+echo Finding Roblox version...
+
+for /f "tokens=* delims=" %%a in ('where /r C:\Users\%username%\AppData\Local\Roblox\Versions "RobloxPlayerBeta.exe"') do (
+set robloxExecutable=%%a
+set robloxVersion=!robloxExecutable:\RobloxPlayerBeta.exe=!
+echo RobloxVersion: !robloxVersion!
+echo RobloxFile: !robloxExecutable!
+)
+cls
+if not defined robloxExecutable (
+for /f "tokens=* delims=" %%a in ('where /r "C:\Program Files (x86)\Roblox" "RobloxPlayerBeta.exe"') do (
+set robloxExecutable=%%a
+set robloxVersion=!robloxExecutable:\RobloxPlayerBeta.exe=!
+echo RobloxVersion: !robloxVersion!
+echo RobloxFile: !robloxExecutable!
+)
+)
+cls
+if not defined robloxExecutable (
+for /f "tokens=* delims=" %%a in ('where /r "%ProgramFiles%\Roblox" "RobloxPlayerBeta.exe"') do (
+set robloxExecutable=%%a
+set robloxVersion=!robloxExecutable:\RobloxPlayerBeta.exe=!
+echo RobloxVersion: !robloxVersion!
+echo RobloxFile: !robloxExecutable!
+)
+)
+cls
+if not defined robloxExecutable (
+echo Roblox not found. Please make sure you have installed and have ran Roblox before attempting to find it.
+goto robloxpause
+)
 echo Deleting..
 for /f "delims=" %%i in ('dir /b /s "C:\Users\%username%\AppData\Local\Roblox"') do (
     echo Deleting "%%i"
     del /q "%%i"
 )
-rmdir /s /q "C:\Users\%username%\AppData\Local\Roblox"
+rmdir /s /q "!robloxVersion!"
 echo Roblox has been deleted. Press any key to go back to the Roblox menu.
 
 pause > nul
