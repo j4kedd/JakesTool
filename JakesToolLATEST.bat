@@ -2,7 +2,7 @@
 
 
 //CHANGE THIS EVERY UPDATE!
-set datemodified=3-04-24 3:32 PM CDT
+set datemodified=3-04-24 3:34 PM CDT
 //
 set RobloxPath=Not manually set.
 
@@ -169,6 +169,7 @@ goto robloxmenu
 )
 
 if "%choice%"=="n" (
+cls
 echo Roblox Version: !robloxVersion!
 echo Press any key to go back to the main menu.
 pause > nul
