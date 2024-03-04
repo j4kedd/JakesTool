@@ -2,7 +2,7 @@
 
 
 //CHANGE THIS EVERY UPDATE!
-set datemodified=2-24-24 7:14 PM CDT
+set datemodified=3-04-24 3:06 PM CDT
 //
 set RobloxPath=Not manually set.
 
@@ -16,7 +16,7 @@ color 0a
 set filehost=https://filehost.losernerd.com
 echo filehost: %filehost%
 echo updated %datemodified%
-echo latest update: first update in months (updated rbxfpsunlocker)
+echo latest update: roblox path setter fixed (no longer broken when blank)
 echo press any key to continue
 pause > nul
 :menu
@@ -109,6 +109,7 @@ echo Example of the correct filepath: C:\Users\Quandale\AppData\Local\Roblox\Ver
 set /p RobloxPath=Enter Roblox's filepath here: 
 echo Roblox filepath set.
 set robloxpathset=yes
+if "%RobloxPath%"=="Not manually set." set robloxpathset=no
 goto robloxmenu
 
 
