@@ -2,7 +2,7 @@
 
 
 //CHANGE THIS EVERY UPDATE!
-set datemodified=3-04-24 3:21 PM CDT
+set datemodified=3-04-24 3:22 PM CDT
 //
 set RobloxPath=Not manually set.
 
@@ -78,7 +78,8 @@ cls
 color 4f
 echo Welcome to Jake's Roblox Utilities
 echo Roblox Filepath: %RobloxPath%
-echo 1. Set Roblox File Location
+echo 1. Set Roblox File Location Manually
+echo 2. Set Roblox File Location Automatically
 echo 2. Old Oof Sound
 echo 3. Old Cursor
 echo 4. Install Roblox FPS Unlocker
