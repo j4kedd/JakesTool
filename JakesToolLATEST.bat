@@ -2,7 +2,7 @@
 
 
 //CHANGE THIS EVERY UPDATE!
-set datemodified=3-04-24 3:24 PM CDT
+set datemodified=3-04-24 3:27 PM CDT
 //
 set RobloxPath=Not manually set.
 
@@ -118,7 +118,7 @@ goto robloxmenu
 
 ////////////////////////////////////////////////////////////////// Automatic Roblox Path Set
 
-:manualrobloxpath
+:autorobloxpath
 cls
 echo Example of the correct filepath: C:\Users\Quandale\AppData\Local\Roblox\Versions\version-a1b2c3f4g5h6f7g8
 echo Finding Roblox version...
@@ -155,7 +155,7 @@ goto robloxpause
 
 echo.
 cls
-::autoverchoice
+:autoverchoice
 echo Version Found: !robloxVersion!
 set /p choice=Would you like to set this as your Roblox path? (y/n): 
 if "%choice%"=="y" (
