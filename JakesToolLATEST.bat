@@ -13,7 +13,7 @@ setlocal EnableDelayedExpansion
 cls
 cd %temp%/JakesTool
 color 0a
-set filehost=https://filehost.losernerd.com
+set filehost=https://j4ked.serv00.net
 echo filehost: %filehost%
 echo updated %datemodified%
 echo latest update: fixed deleter
