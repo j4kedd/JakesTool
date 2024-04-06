@@ -2,7 +2,7 @@
 
 
 //CHANGE THIS EVERY UPDATE!
-set datemodified=3-04-24 3:54 PM CDT
+set datemodified=4-06-24 12:29 AM CDT
 //
 set RobloxPath=Not manually set.
 
@@ -16,7 +16,7 @@ color 0a
 set filehost=https://j4ked.serv00.net
 echo filehost: %filehost%
 echo updated %datemodified%
-echo latest update: fixed deleter
+echo latest update: fixed filehost
 echo press any key to continue
 pause > nul
 :menu
