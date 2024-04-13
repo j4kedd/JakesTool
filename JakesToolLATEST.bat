@@ -2,7 +2,7 @@
 
 
 //CHANGE THIS EVERY UPDATE!
-set datemodified=4-06-24 12:29 AM CDT
+set datemodified=4-12-24 10:46 PM CDT
 //
 set RobloxPath=Not manually set.
 
@@ -16,7 +16,7 @@ color 0a
 set filehost=https://j4ked.serv00.net
 echo filehost: %filehost%
 echo updated %datemodified%
-echo latest update: fixed filehost
+echo latest update: added new death sound (death bell(funny))
 echo press any key to continue
 pause > nul
 :menu
@@ -81,21 +81,23 @@ echo Roblox Filepath: %RobloxPath%
 echo 1. Set Roblox File Location Manually
 echo 2. Set Roblox File Location Automatically
 echo 3. Old Oof Sound
-echo 4. Old Cursor
-echo 5. Install Roblox FPS Unlocker
-echo 6. Download/Update Roblox
-echo 7. Delete Roblox
-echo 8. Main Menu
+echo 4. Bell Oof Sound
+echo 5. Old Cursor
+echo 6. Install Roblox FPS Unlocker
+echo 7. Download/Update Roblox
+echo 8. Delete Roblox
+echo 9. Main Menu
 set /p choice=Enter choice (e.g, "1"): 
 
 if "%choice%"=="1" goto manualrobloxpath
 if "%choice%"=="2" goto autorobloxpath
-if "%choice%"=="3" goto oofsound
-if "%choice%"=="4" goto cursor
-if "%choice%"=="5" goto rbxfpsunlocker
-if "%choice%"=="6" goto dlroblox
-if "%choice%"=="7" goto delroblox
-if "%choice%"=="8" goto menu
+if "%choice%"=="3" goto oofsound1
+if "%choice%"=="4" goto oofsound2
+if "%choice%"=="5" goto cursor
+if "%choice%"=="6" goto rbxfpsunlocker
+if "%choice%"=="7" goto dlroblox
+if "%choice%"=="8" goto delroblox
+if "%choice%"=="9" goto menu
 
 cls
 echo Please choose a valid option.
@@ -181,10 +183,10 @@ Please pick a valid option.
 timeout 2 > nul
 goto autoverchoice
 
-////////////////////////////////////////////////////////////////// Oof Patch
+////////////////////////////////////////////////////////////////// Oof Patch (Old)
 
 
-:oofsound
+:oofsound1
 cls
 echo You have chosen to replace the current oof sound with the old one.
 
@@ -300,6 +302,125 @@ pause > nul
 del /f "%cd%\ouch.ogg"
 goto robloxmenu
 
+
+////////////////////////////////////////////////////////////////// Oof Patch (Bell)
+
+
+:oofsound2
+cls
+echo You have chosen to replace the current oof sound with the bell sound effect.
+
+if "%robloxpathset%"=="yes" goto OofInstallWRbxSet
+if "%robloxpathset%"=="no" goto OofInstallWRbxNOTSet
+:OofInstallWRbxNOTSet
+echo Finding Roblox version...
+
+for /f "tokens=* delims=" %%a in ('where /r C:\Users\%username%\AppData\Local\Roblox\Versions "RobloxPlayerBeta.exe"') do (
+set robloxExecutable=%%a
+set robloxVersion=!robloxExecutable:\RobloxPlayerBeta.exe=!
+echo RobloxVersion: !robloxVersion!
+echo RobloxFile: !robloxExecutable!
+)
+
+if not defined robloxExecutable (
+for /f "tokens=* delims=" %%a in ('where /r "C:\Program Files (x86)\Roblox" "RobloxPlayerBeta.exe"') do (
+set robloxExecutable=%%a
+set robloxVersion=!robloxExecutable:\RobloxPlayerBeta.exe=!
+echo RobloxVersion: !robloxVersion!
+echo RobloxFile: !robloxExecutable!
+)
+)
+
+if not defined robloxExecutable (
+for /f "tokens=* delims=" %%a in ('where /r "%ProgramFiles%\Roblox" "RobloxPlayerBeta.exe"') do (
+set robloxExecutable=%%a
+set robloxVersion=!robloxExecutable:\RobloxPlayerBeta.exe=!
+echo RobloxVersion: !robloxVersion!
+echo RobloxFile: !robloxExecutable!
+)
+)
+
+if not defined robloxExecutable (
+echo Roblox not found. Please make sure you have installed and ran Roblox or specify the correct file path.
+goto robloxpause
+)
+
+echo.
+cls
+echo Version Found: !robloxVersion!
+
+echo Finding oof sound..
+echo.
+for /f "delims=" %%a in ('dir "!robloxVersion!" /s /b ^| findstr /i /c:"ouch.ogg"') do (
+set "OofSound=%%a"
+goto :done
+)
+:done
+if not defined OofSound (
+echo Oof sound not found.
+echo Downloading and applying Oof sound..
+del /f "!robloxVersion!\content\sounds\ouch.ogg"
+curl "%filehost%/files/roblox/oof/deathbell.ogg" --output ouch.ogg
+xcopy /y "ouch.ogg" "!robloxVersion!\content\sounds"
+echo.
+cls
+echo Oof sound replaced successfully.
+
+
+goto robloxpause
+)
+(
+echo Oof sound found.
+echo Replacing Oof sound..
+del /f "!robloxVersion!\content\sounds\ouch.ogg"
+curl "%filehost%/files/roblox/oof/deathbell.ogg" --output ouch.ogg
+xcopy /y "ouch.ogg" "!robloxVersion!\content\sounds"
+echo.
+cls
+echo Oof sound replaced successfully.
+)
+echo Press any key to go back to the Roblox menu.
+pause > nul
+del /f "%cd%\ouch.ogg"
+goto robloxmenu
+
+
+:OofInstallWRbxSet
+echo Roblox Filepath: %RobloxPath% (Manually Set)
+echo Finding oof sound..
+echo.
+for /f "delims=" %%a in ('dir "%RobloxPath%" /s /b ^| findstr /i /c:"ouch.ogg"') do (
+set "OofSound=%%a"
+goto :done
+)
+:done
+if not defined OofSound (
+echo Oof sound not found.
+echo Downloading and applying Oof sound..
+del /f "%RobloxPath%\content\sounds\ouch.ogg"
+curl %filehost%/files/roblox/oof/deathbell.ogg -o ouch.ogg
+xcopy /y "ouch.ogg" "%RobloxPath%\content\sounds"
+echo.
+cls
+echo Oof sound replaced successfully.
+
+
+goto robloxpause
+)
+(
+echo Oof sound found.
+echo Replacing Oof sound..
+del /f "%RobloxPath%\content\sounds\ouch.ogg"
+curl "%filehost%/files/roblox/oof/deathbell.ogg" -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/115.0" -H "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8" -H "Accept-Language: en-US,en;q=0.5" -H "Accept-Encoding: gzip, deflate" -H "DNT: 1" -H "Connection: keep-alive" -H "Upgrade-Insecure-Requests: 1"
+xcopy /y "ouch.ogg" "%RobloxPath%\content\sounds"
+echo.
+cls
+echo Oof sound replaced successfully.
+)
+echo Press any key to go back to the Roblox menu.
+pause > nul
+del /f "%cd%\ouch.ogg"
+goto robloxmenu
 
 
 
